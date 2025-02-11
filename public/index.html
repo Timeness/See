@@ -25,7 +25,7 @@
             const formData = new FormData();
             formData.append("image", fileInput);
 
-            fetch("/upload", { method: "POST", body: formData })
+            fetch("/api/upload", { method: "POST", body: formData })
                 .then(res => res.json())
                 .then(data => {
                     document.getElementById("link").innerHTML = 
