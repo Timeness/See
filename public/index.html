@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload & Link Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input { margin: 20px; }
+        img { max-width: 100%; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Upload Image & Get Link</h2>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="uploadImage()">Upload</button>
+    <p id="link"></p>
+    <img id="preview" style="display: none;">
+
+    <script>
+        function uploadImage() {
+            const fileInput = document.getElementById("fileInput").files[0];
+            if (!fileInput) return alert("Please select an image!");
+
+            const formData = new FormData();
+            formData.append("image", fileInput);
+
+            fetch("/upload", { method: "POST", body: formData })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById("link").innerHTML = 
+                        `Image Link: <a href="${data.url}" target="_blank">${data.url}</a>`;
+                    document.getElementById("preview").src = data.url;
+                    document.getElementById("preview").style.display = "block";
+                })
+                .catch(err => alert("Upload failed!"));
+        }
+    </script>
+</body>
+</html>
