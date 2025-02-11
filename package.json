@@ -4,16 +4,12 @@
   "description": "Image upload and link generator using Node.js and Express",
   "main": "api/server.js",
   "scripts": {
-    "start": "node api/server.js",
-    "vercel-build": "vercel"
+    "start": "node api/server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
     "multer": "^1.4.5",
     "cors": "^2.8.5"
-  },
-  "devDependencies": {
-    "@vercel/node": "^2.0.0"
   },
   "engines": {
     "node": "18.x"
